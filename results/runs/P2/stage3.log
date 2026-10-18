@@ -1,0 +1,71 @@
+:: loading settings :: url = jar:file:/C:/Users/anura/.venvs/bda-a2/Lib/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: C:\Users\anura\.ivy2\cache
+The jars for the packages stored in: C:\Users\anura\.ivy2\jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-56a8abd5-9d19-4558-a3a5-5ee85bfe3082;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.kafka#kafka-clients;3.4.1 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.10.5 in central
+	found org.slf4j#slf4j-api;2.0.7 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.4 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.4 in spark-list
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+:: resolution report :: resolve 650ms :: artifacts dl 44ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.4 from spark-list in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.4 from central in [default]
+	org.apache.kafka#kafka-clients;3.4.1 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;2.0.7 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.10.5 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   11  |   0   |   0   |   0   ||   11  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-56a8abd5-9d19-4558-a3a5-5ee85bfe3082
+	confs: [default]
+	0 artifacts copied, 11 already retrieved (0kB/19ms)
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/17 12:40:08 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+[stage3] running: settings=[(20, 5), (10, 10), (25, 4)] threshold=0.5 min_trips=20
+[Stage 1:>                                                          (0 + 1) / 1]                                                                                [Stage 2:>                                                          (0 + 1) / 1][Stage 3:>                                                          (0 + 1) / 1]                                                                                [Stage 5:>                                                          (0 + 1) / 1]                                                                                [Stage 6:>                                                          (0 + 1) / 4][Stage 6:==============>                                            (1 + 1) / 4][Stage 6:=============================>                             (2 + 1) / 4][Stage 6:============================================>              (3 + 1) / 4]                                                                                [Stage 8:==============>                                            (1 + 1) / 4][Stage 8:============================================>              (3 + 1) / 4]                                                                                [Stage 10:>                                                         (0 + 1) / 4][Stage 10:==============>                                           (1 + 1) / 4][Stage 10:=============================>                            (2 + 1) / 4][Stage 10:===========================================>              (3 + 1) / 4][Stage 11:>                                                         (0 + 1) / 1]                                                                                [Stage 12:=============================>                            (2 + 1) / 4][Stage 13:>                                                         (0 + 1) / 1]                                                                                [stage3] window 2026-01-05T00:00:00 zones=18 pairs=153 true=1 20x5: cand=5 recall=1.0 | 10x10: cand=0 recall=0.0 | 25x4: cand=6 recall=1.0
+[stage3] window 2026-01-05T01:00:00 zones=9 pairs=36 true=0 20x5: cand=1 recall=None | 10x10: cand=0 recall=None | 25x4: cand=3 recall=None
+[stage3] window 2026-01-05T02:00:00 zones=2 pairs=1 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None
+[stage3] window 2026-01-05T03:00:00 zones=1 pairs=0 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None
+[stage3] window 2026-01-05T04:00:00 zones=2 pairs=1 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None
+[stage3] window 2026-01-05T05:00:00 zones=7 pairs=21 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None
+[Stage 14:=============================>                            (2 + 1) / 4][Stage 14:===========================================>              (3 + 1) / 4]                                                                                [stage3] window 2026-01-05T06:00:00 zones=33 pairs=528 true=13 20x5: cand=46 recall=0.4615 | 10x10: cand=0 recall=0.0 | 25x4: cand=146 recall=1.0
+[stage3] window 2026-01-05T07:00:00 zones=49 pairs=1176 true=128 20x5: cand=189 recall=0.6406 | 10x10: cand=7 recall=0.0391 | 25x4: cand=466 recall=0.9531
+[stage3] window 2026-01-05T08:00:00 zones=53 pairs=1378 true=156 20x5: cand=266 recall=0.7051 | 10x10: cand=9 recall=0.0577 | 25x4: cand=587 recall=0.9487
+[Stage 16:=============================>                            (2 + 1) / 4]                                                                                [stage3] window 2026-01-05T09:00:00 zones=50 pairs=1225 true=165 20x5: cand=273 recall=0.7455 | 10x10: cand=6 recall=0.0303 | 25x4: cand=555 recall=0.9212
+[stage3] window 2026-01-05T10:00:00 zones=45 pairs=990 true=98 20x5: cand=177 recall=0.6224 | 10x10: cand=3 recall=0.0306 | 25x4: cand=376 recall=0.9082
+[stage3] window 2026-01-05T11:00:00 zones=45 pairs=990 true=106 20x5: cand=190 recall=0.6226 | 10x10: cand=3 recall=0.0189 | 25x4: cand=404 recall=0.9623
+[stage3] window 2026-01-05T12:00:00 zones=46 pairs=1035 true=74 20x5: cand=214 recall=0.6622 | 10x10: cand=2 recall=0.0135 | 25x4: cand=425 recall=0.973
+[stage3] window 2026-01-05T13:00:00 zones=48 pairs=1128 true=137 20x5: cand=234 recall=0.7737 | 10x10: cand=13 recall=0.0876 | 25x4: cand=445 recall=0.9635
+[Stage 19:>                                                         (0 + 1) / 1]                                                                                [stage3] window 2026-01-05T14:00:00 zones=49 pairs=1176 true=129 20x5: cand=262 recall=0.7752 | 10x10: cand=7 recall=0.0388 | 25x4: cand=486 recall=0.9535
+[stage3] window 2026-01-05T15:00:00 zones=49 pairs=1176 true=116 20x5: cand=272 recall=0.75 | 10x10: cand=2 recall=0.0 | 25x4: cand=450 recall=0.931
+[stage3] window 2026-01-05T16:00:00 zones=50 pairs=1225 true=77 20x5: cand=233 recall=0.8052 | 10x10: cand=6 recall=0.026 | 25x4: cand=441 recall=0.987
+[Stage 20:>                                                         (0 + 1) / 4][Stage 20:==============>                                           (1 + 1) / 4][Stage 20:===========================================>              (3 + 1) / 4]                                                                                [stage3] window 2026-01-05T17:00:00 zones=50 pairs=1225 true=145 20x5: cand=278 recall=0.7724 | 10x10: cand=5 recall=0.0345 | 25x4: cand=531 recall=0.9655
+[stage3] window 2026-01-05T18:00:00 zones=49 pairs=1176 true=171 20x5: cand=277 recall=0.6725 | 10x10: cand=7 recall=0.0292 | 25x4: cand=533 recall=0.9649
+[Stage 22:==============>                                           (1 + 1) / 4][Stage 22:=============================>                            (2 + 1) / 4][Stage 22:===========================================>              (3 + 1) / 4]                                                                                [stage3] window 2026-01-05T19:00:00 zones=47 pairs=1081 true=84 20x5: cand=173 recall=0.7976 | 10x10: cand=8 recall=0.0833 | 25x4: cand=350 recall=0.9167
+[stage3] window 2026-01-05T20:00:00 zones=44 pairs=946 true=80 20x5: cand=152 recall=0.75 | 10x10: cand=2 recall=0.025 | 25x4: cand=314 recall=0.95
+[stage3] window 2026-01-05T21:00:00 zones=43 pairs=903 true=52 20x5: cand=153 recall=0.8269 | 10x10: cand=3 recall=0.0192 | 25x4: cand=318 recall=1.0
+[stage3] window 2026-01-05T22:00:00 zones=39 pairs=741 true=22 20x5: cand=68 recall=0.6364 | 10x10: cand=1 recall=0.0455 | 25x4: cand=201 recall=0.7727
+[stage3] window 2026-01-05T23:00:00 zones=31 pairs=465 true=2 20x5: cand=15 recall=1.0 | 10x10: cand=0 recall=0.0 | 25x4: cand=55 recall=1.0
+[Stage 24:==============>                                           (1 + 1) / 4][Stage 24:=============================>                            (2 + 1) / 4][Stage 24:===========================================>              (3 + 1) / 4]                                                                                [stage3] window 2026-01-06T00:00:00 zones=20 pairs=190 true=0 20x5: cand=5 recall=None | 10x10: cand=0 recall=None | 25x4: cand=8 recall=None
+[stage3] window 2026-01-06T01:00:00 zones=8 pairs=28 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None
+[Stage 26:==============>                                           (1 + 1) / 4][Stage 26:=============================>                            (2 + 1) / 4][Stage 26:===========================================>              (3 + 1) / 4]                                                                                [Stage 28:==============>                                           (1 + 1) / 4][Stage 28:=============================>                            (2 + 1) / 4][Stage 28:===========================================>              (3 + 1) / 4]                                                                                [Stage 30:==============>                                           (1 + 1) / 4][Stage 30:=============================>                            (2 + 1) / 4]                                                                                [Stage 32:==============>                                           (1 + 1) / 4][Stage 32:=============================>                            (2 + 1) / 4][Stage 32:===========================================>              (3 + 1) / 4]                                                                                [Stage 34:>                                                         (0 + 1) / 4][Stage 34:==============>                                           (1 + 1) / 4][Stage 34:=============================>                            (2 + 1) / 4][Stage 34:===========================================>              (3 + 1) / 4]                                                                                [stage3] window 2026-01-06T02:00:00 zones=4 pairs=6 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None
+[stage3] window 2026-01-06T03:00:00 zones=1 pairs=0 true=0 20x5: cand=0 recall=None | 10x10: cand=0 recall=None | 25x4: cand=0 recall=None

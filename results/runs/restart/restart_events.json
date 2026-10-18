@@ -1,0 +1,14 @@
+[
+ {
+  "t_s": 190.5,
+  "event": "stage2 killed"
+ },
+ {
+  "t_s": 210.6,
+  "event": "stage2 restarted"
+ },
+ {
+  "t_s": 226.6,
+  "event": "stage2 queries running"
+ }
+]

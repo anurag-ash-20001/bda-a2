@@ -1,0 +1,71 @@
+:: loading settings :: url = jar:file:/C:/Users/anura/.venvs/bda-a2/Lib/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: C:\Users\anura\.ivy2\cache
+The jars for the packages stored in: C:\Users\anura\.ivy2\jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-d92e4d4d-acc6-43dc-b768-64822df6387a;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.kafka#kafka-clients;3.4.1 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.10.5 in central
+	found org.slf4j#slf4j-api;2.0.7 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.4 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.4 in spark-list
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+:: resolution report :: resolve 539ms :: artifacts dl 37ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.4 from spark-list in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.4 from central in [default]
+	org.apache.kafka#kafka-clients;3.4.1 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;2.0.7 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.10.5 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   11  |   0   |   0   |   0   ||   11  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-d92e4d4d-acc6-43dc-b768-64822df6387a
+	confs: [default]
+	0 artifacts copied, 11 already retrieved (0kB/13ms)
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/17 12:39:57 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+[stage1] running: bloom m=1917012 bits k=7 slots=1
+[Stage 0:>                                                          (0 + 1) / 1]                                                                                [stage1] batch 1: rows=20 spark+toPandas=1.56s bloom+produce=0.01s flush=0.02s lag_raw=2980
+[Stage 1:>                                                          (0 + 1) / 4][Stage 1:==============>                                            (1 + 1) / 4][Stage 1:=============================>                             (2 + 1) / 4][Stage 1:============================================>              (3 + 1) / 4]                                                                                [stage1] batch 2: rows=2980 spark+toPandas=2.66s bloom+produce=0.04s flush=0.01s lag_raw=0
+[stage1] batch 3: rows=76 spark+toPandas=0.28s bloom+produce=0.01s flush=0.03s lag_raw=5182
+[Stage 3:============================================>              (3 + 1) / 4]                                                                                [stage1] batch 4: rows=8021 spark+toPandas=0.72s bloom+produce=0.31s flush=0.01s lag_raw=10470
+[Stage 4:============================================>              (3 + 1) / 4]                                                                                [stage1] batch 5: rows=13348 spark+toPandas=0.76s bloom+produce=0.70s flush=0.02s lag_raw=11908
+[stage1] batch 6: rows=17365 spark+toPandas=0.63s bloom+produce=0.49s flush=0.01s lag_raw=11415
+[Stage 6:============================================>              (3 + 1) / 4]                                                                                [stage1] batch 7: rows=14655 spark+toPandas=0.64s bloom+produce=0.41s flush=0.01s lag_raw=11269
+[stage1] batch 8: rows=13918 spark+toPandas=0.55s bloom+produce=0.43s flush=0.01s lag_raw=9431
+[stage1] batch 9: rows=11960 spark+toPandas=0.46s bloom+produce=0.32s flush=0.01s lag_raw=7905
+[stage1] batch 10: rows=10398 spark+toPandas=0.45s bloom+produce=0.30s flush=0.01s lag_raw=7263
+[stage1] batch 11: rows=9988 spark+toPandas=0.87s bloom+produce=0.26s flush=0.01s lag_raw=1267
+[stage1] batch 12: rows=1315 spark+toPandas=0.39s bloom+produce=0.04s flush=0.00s lag_raw=109
+[stage1] batch 13: rows=158 spark+toPandas=0.30s bloom+produce=0.01s flush=0.00s lag_raw=84
+[stage1] batch 14: rows=123 spark+toPandas=0.22s bloom+produce=0.01s flush=0.00s lag_raw=72
+[stage1] batch 15: rows=98 spark+toPandas=0.25s bloom+produce=0.00s flush=0.00s lag_raw=52
+[stage1] batch 16: rows=70 spark+toPandas=0.25s bloom+produce=0.01s flush=0.00s lag_raw=57
+[stage1] batch 17: rows=87 spark+toPandas=0.28s bloom+produce=0.01s flush=0.00s lag_raw=53
+[stage1] batch 18: rows=83 spark+toPandas=0.23s bloom+produce=0.00s flush=0.00s lag_raw=34
+[stage1] batch 19: rows=56 spark+toPandas=0.40s bloom+produce=0.00s flush=0.00s lag_raw=77
+[stage1] batch 20: rows=88 spark+toPandas=0.28s bloom+produce=0.00s flush=0.00s lag_raw=37
+[stage1] batch 21: rows=53 spark+toPandas=0.46s bloom+produce=0.00s flush=0.00s lag_raw=33
+[stage1] batch 22: rows=48 spark+toPandas=0.29s bloom+produce=0.00s flush=0.00s lag_raw=34
+[Stage 22:==============>                                           (1 + 1) / 4]                                                                                [stage1] batch 23: rows=48 spark+toPandas=0.74s bloom+produce=0.00s flush=0.00s lag_raw=31
+[stage1] batch 24: rows=37 spark+toPandas=0.22s bloom+produce=0.00s flush=0.00s lag_raw=18
+[stage1] batch 25: rows=24 spark+toPandas=0.39s bloom+produce=0.01s flush=0.00s lag_raw=21
+[Stage 25:=============================>                            (2 + 1) / 4][Stage 25:===========================================>              (3 + 1) / 4]                                                                                [stage1] batch 26: rows=25 spark+toPandas=1.27s bloom+produce=0.00s flush=0.00s lag_raw=14
+[Stage 26:==============>                                           (1 + 1) / 4][Stage 26:=============================>                            (2 + 1) / 4][Stage 26:===========================================>              (3 + 1) / 4]                                                                                [stage1] batch 27: rows=19 spark+toPandas=2.13s bloom+produce=0.00s flush=0.00s lag_raw=0
+[stage1] EOS forwarded. accepted=99738 rejected=2319

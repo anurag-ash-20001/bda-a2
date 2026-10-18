@@ -1,0 +1,86 @@
+26/10/17 13:58:11 WARN Utils: Your hostname, ash resolves to a loopback address: 127.0.0.1, but we couldn't find any external IP address!
+26/10/17 13:58:11 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+:: loading settings :: url = jar:file:/C:/Users/anura/.venvs/bda-a2/Lib/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: C:\Users\anura\.ivy2\cache
+The jars for the packages stored in: C:\Users\anura\.ivy2\jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-42004b8e-ae1a-45c0-a821-7ece2c1cb07c;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.kafka#kafka-clients;3.4.1 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.10.5 in central
+	found org.slf4j#slf4j-api;2.0.7 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.4 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.4 in spark-list
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+:: resolution report :: resolve 581ms :: artifacts dl 47ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.4 from spark-list in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.4 from central in [default]
+	org.apache.kafka#kafka-clients;3.4.1 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;2.0.7 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.10.5 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   11  |   0   |   0   |   0   ||   11  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-42004b8e-ae1a-45c0-a821-7ece2c1cb07c
+	confs: [default]
+	0 artifacts copied, 11 already retrieved (0kB/19ms)
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/17 13:58:13 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+[stage2] running 3 queries, slots=4 watermark=30min window=60min restored=False
+[Stage 1:>                                                          (0 + 4) / 4][Stage 1:>                  (0 + 4) / 4][Stage 3:>                  (0 + 0) / 4]                                                                                [Stage 3:>                                                          (0 + 4) / 4]                                                                                [Stage 4:>                  (0 + 2) / 2][Stage 5:>                  (0 + 2) / 2][Stage 4:>    (0 + 2) / 2][Stage 5:>    (0 + 2) / 2][Stage 7:>    (0 + 0) / 2]                                                                                [stage2] batch 1: rows=200 took=0.02s lag_clean=2800
+[Stage 7:>                                                          (0 + 2) / 2][Stage 6:=============================>                             (2 + 2) / 4][Stage 6:==============>    (3 + 1) / 4][Stage 8:>                  (0 + 3) / 4]                                                                                [Stage 8:==============>    (3 + 1) / 4][Stage 9:=========>         (2 + 2) / 4]                                                                                [stage2] batch 2: rows=2800 took=0.04s lag_clean=0
+[Stage 10:==============>                                           (1 + 3) / 4]                                                                                [Stage 12:>                                                         (0 + 4) / 4][Stage 13:===========================================>              (3 + 1) / 4]                                                                                [stage2] batch 3: rows=39 took=0.05s lag_clean=0
+[Stage 17:=============================>                            (2 + 2) / 4][Stage 16:>                                                         (0 + 4) / 4][Stage 16:=============================>                            (2 + 2) / 4]                                                                                [Stage 18:===========================================>              (3 + 1) / 4]                                                                                [stage2] batch 4: rows=3017 took=0.06s lag_clean=2099
+[Stage 21:>                                                         (0 + 4) / 4]                                                                                [Stage 22:=============================>                            (2 + 2) / 4]                                                                                [stage2] batch 5: rows=5211 took=0.13s lag_clean=5350
+[Stage 24:>                                                         (0 + 4) / 4][Stage 24:>                 (0 + 4) / 4][Stage 25:>                 (0 + 0) / 4][Stage 24:=============>    (3 + 1) / 4][Stage 25:>                 (0 + 3) / 4]                                                                                [Stage 26:==============>                                           (1 + 3) / 4]                                                                                [stage2] batch 6: rows=5350 took=0.15s lag_clean=6010
+[Stage 28:===========================================>              (3 + 1) / 4][Stage 29:>                                                         (0 + 4) / 4][Stage 29:>   (0 + 4) / 4][Stage 30:>   (0 + 0) / 4][Stage 32:>   (0 + 0) / 4]                                                                                [stage2] batch 7: rows=6010 took=0.21s lag_clean=4779
+[Stage 31:>                                                         (0 + 4) / 4]                                                                                [Stage 33:=============================>                            (2 + 2) / 4]                                                                                [stage2] batch 8: rows=8896 took=0.19s lag_clean=3869
+[Stage 34:>                                                         (0 + 4) / 4][Stage 34:=========>        (2 + 2) / 4][Stage 36:====>             (1 + 2) / 4]                                                                                [stage2] batch 9: rows=3869 took=0.12s lag_clean=3667
+[Stage 40:>                                                         (0 + 4) / 4][Stage 40:=============================>                            (2 + 2) / 4]                                                                                [stage2] batch 10: rows=3667 took=0.11s lag_clean=4451
+[stage2] batch 11: rows=4451 took=0.11s lag_clean=3807
+[Stage 45:>                                                         (0 + 4) / 4]                                                                                [stage2] batch 12: rows=3807 took=0.09s lag_clean=3143
+[Stage 51:==============>                                           (1 + 3) / 4]                                                                                [stage2] batch 13: rows=3143 took=0.12s lag_clean=3648
+[stage2] batch 14: rows=6680 took=0.17s lag_clean=3061
+[Stage 56:>                 (0 + 4) / 4][Stage 58:>                 (0 + 0) / 4]                                                                                [stage2] batch 15: rows=3061 took=0.10s lag_clean=3100
+[Stage 62:===========================================>              (3 + 1) / 4]                                                                                [stage2] batch 16: rows=3100 took=0.08s lag_clean=4334
+[stage2] batch 17: rows=4334 took=0.12s lag_clean=3147
+[Stage 67:==============>                                           (1 + 3) / 4]                                                                                [stage2] batch 18: rows=3147 took=0.08s lag_clean=3326
+[Stage 73:>                                                         (0 + 4) / 4]                                                                                [stage2] batch 19: rows=3326 took=0.09s lag_clean=3621
+[stage2] batch 20: rows=4473 took=0.14s lag_clean=2223
+[Stage 78:>                                                         (0 + 4) / 4][Stage 78:==============>                                           (1 + 3) / 4]                                                                                [stage2] batch 21: rows=2223 took=0.09s lag_clean=3875
+[Stage 84:===========================================>              (3 + 1) / 4]                                                                                [stage2] batch 22: rows=3875 took=0.12s lag_clean=7583
+[stage2] batch 23: rows=7583 took=0.18s lag_clean=3187
+[Stage 89:>                 (0 + 4) / 4][Stage 91:>                 (0 + 0) / 4]                                                                                [stage2] batch 24: rows=3187 took=0.10s lag_clean=3844
+[Stage 95:>                 (0 + 4) / 4][Stage 97:>                 (0 + 0) / 4]                                                                                [Stage 98:=============================>                            (2 + 2) / 4]                                                                                [stage2] batch 25: rows=6687 took=0.15s lag_clean=135
+[Stage 101:>                                                        (0 + 4) / 4][Stage 100:>                                                        (0 + 4) / 4][Stage 100:>                (0 + 4) / 4][Stage 102:>                (0 + 0) / 4]                                                                                [stage2] batch 26: rows=135 took=0.03s lag_clean=109
+[Stage 104:============================>                            (2 + 2) / 4][Stage 106:============================>                            (2 + 2) / 4][Stage 105:>                                                        (0 + 4) / 4][Stage 105:====>            (1 + 3) / 4][Stage 108:>                (0 + 0) / 4][Stage 105:=> (2 + 2) / 4][Stage 107:>  (0 + 2) / 4][Stage 108:>  (0 + 0) / 4]                                                                                [stage2] batch 27: rows=109 took=0.02s lag_clean=85
+[stage2] batch 28: rows=85 took=0.04s lag_clean=34
+[Stage 110:====>            (1 + 3) / 4][Stage 112:============>    (3 + 1) / 4]                                                                                [stage2] batch 29: rows=34 took=0.02s lag_clean=36
+[stage2] batch 30: rows=36 took=0.02s lag_clean=43
+[Stage 116:>                (0 + 2) / 4][Stage 118:>                (0 + 3) / 4][Stage 116:====>            (1 + 3) / 4][Stage 118:============>    (3 + 1) / 4][Stage 116:==========================================>              (3 + 1) / 4]                                                                                [stage2] batch 31: rows=43 took=0.03s lag_clean=44
+[Stage 122:>                                                        (0 + 4) / 4]                                                                                [stage2] batch 32: rows=44 took=0.03s lag_clean=29
+[Stage 124:==========================================>              (3 + 1) / 4]                                                                                [stage2] batch 33: rows=29 took=0.02s lag_clean=28
+[stage2] batch 34: rows=28 took=0.03s lag_clean=24
+[Stage 130:>                                                        (0 + 4) / 4]                                                                                [stage2] batch 35: rows=24 took=0.02s lag_clean=17
+[stage2] batch 36: rows=17 took=0.02s lag_clean=9
+[Stage 140:==========================================>              (3 + 1) / 4]                                                                                [stage2] batch 37: rows=9 took=0.04s lag_clean=8
+[Stage 139:==========================================>              (3 + 1) / 4]                                                                                [stage2] batch 38: rows=8 took=0.02s lag_clean=5
+[Stage 144:>                                                        (0 + 4) / 4][Stage 146:>                (0 + 4) / 4][Stage 147:>                (0 + 0) / 4][Stage 145:>  (0 + 0) / 4][Stage 146:>  (0 + 4) / 4][Stage 147:>  (0 + 0) / 4]                                                                                [stage2] EOS reached: final report published (99738 events)
+[stage2] batch 39: rows=5 took=0.03s lag_clean=0
+[Stage 145:========>        (2 + 2) / 4][Stage 147:>                (0 + 3) / 4]                                                                                

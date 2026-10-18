@@ -1,0 +1,6 @@
+[producer] loaded 100000 events 2026-01-05T00:00:00 .. 2026-01-06T03:24:59
+[producer] sent 3000 warm-up records, waiting 12s
+[producer] sent=30078 source=29982/100000 actual_eps=6006 pending_delayed=543
+[producer] sent=60369 source=60037/100000 actual_eps=6031 pending_delayed=912
+[producer] sent=90736 source=90053/100000 actual_eps=6045 pending_delayed=1182
+[producer] done: sent=102057 in 36.3s actual_eps=6050.0 (requested 6000.0) dups=2057 delayed=1988

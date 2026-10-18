@@ -1,0 +1,61 @@
+# Single configuration file for the whole pipeline.
+# Every value can be overridden per run:  run_experiment.py --set producer_rate=5000 --set partitions=1
+
+# ---------------- assignment parameters (names fixed by the brief) ----------------
+partitions: 4                 # partitions of taxi.raw and taxi.clean
+producer_rate: 1000           # events/second requested from the producer
+duplicate_rate: 0.02          # 2% deliberate duplicate sends (same event_id)
+delayed_event_rate: 0.02      # 2% emitted late
+max_delay_seconds: 20         # delayed events are held back 1..max_delay_seconds (wall clock)
+window_minutes: 60            # event-time window for Stage 2 (HLL, diversity) and Stage 3 (LSH)
+hll_precision: 12             # HLL++ precision p -> 2^p registers
+dgim_max_window: 10000        # DGIM window N (most recent cleaned events)
+bloom_expected_items: 200000
+bloom_false_positive_target: 0.01
+lsh_num_hashes: 100
+lsh_bands: 20
+lsh_rows_per_band: 5
+jaccard_threshold: 0.50
+
+# ---------------- run / experiment knobs ----------------
+run_id: default
+parallelism: 4                # consumers / processing slots per Spark stage (local[N])
+partition_key: pickup_zone    # pickup_zone | none  (none = no key -> librdkafka sticky/round-robin)
+metrics_partitions: 1         # taxi.metrics and taxi.lsh carry compact summaries
+
+# ---------------- data ----------------
+data_file: yellow_tripdata_2026-01.parquet
+segment_start: "2026-01-05T00:00:00"   # first pickup time replayed (Monday)
+max_events: 100000            # number of source trips replayed (same segment in every run)
+warmup_events: 3000           # control records sent first so Spark compiles its queries before measuring
+warmup_seconds: 12
+
+# ---------------- Stage 1 ----------------
+max_trip_minutes: 300         # reject trips longer than this (bad clock data)
+max_trip_miles: 100           # reject odometer garbage (source max is 269,097 miles)
+max_fare: 1000                # reject absurd fares
+slow_trip_minutes: 30         # slow_trip_bit = 1 if trip_duration_min > 30
+
+# ---------------- Stage 2 ----------------
+report_interval_seconds: 5    # periodic summary to taxi.metrics
+reservoir_sizes: [100, 1000, 10000]
+reservoir_report_k: 1000      # k used in the standardized "sampling" field
+dgim_queries: [1000, 5000, 10000]
+dgim_report_k: 5000           # k used in the standardized "dgim" field
+diversity_min_destinations: 10
+sampling_rate: 0.10           # event-sampling probability (entity sample gets the same storage budget)
+watermark_minutes: 30         # allowed lateness (event time) for Stage 2/3 windows
+random_seed: 42
+
+# ---------------- Stage 3 ----------------
+lsh_min_trips: 20             # only pickup zones with >= 20 trips in the window
+lsh_extra_settings: [[10, 10], [25, 4]]  # additional (bands, rows) settings evaluated on the same windows
+
+# ---------------- infrastructure ----------------
+bootstrap_servers: 127.0.0.1:9092
+kafka_mode: native            # native (bundled scripts on Windows) | external (docker-compose / existing broker)
+kafka_home: ~/tools/kafka
+hadoop_home: ~/tools/hadoop
+work_dir: ~/AppData/Local/bda-a2   # Kafka data + Spark checkpoints (kept out of OneDrive)
+spark_kafka_package: org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3
+final_idle_timeout_seconds: 20  # final consumer exits this long after the last message once Stage 2 reported EOS

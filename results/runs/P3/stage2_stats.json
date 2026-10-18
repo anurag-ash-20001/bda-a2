@@ -1,0 +1,117 @@
+{
+ "events": 99738,
+ "late": {
+  "on_time": 25012,
+  "late_included": 72924,
+  "late_dropped": 1802,
+  "lateness_buckets_included": {
+   "<1min": 65344,
+   "1-10min": 7318,
+   "10-30min": 135,
+   ">=30min": 127
+  },
+  "examples": [
+   {
+    "class": "late_included",
+    "event_id": "2026-01-row-02765122",
+    "event_time": "2026-01-05T03:00:14",
+    "max_event_time_seen": "2026-01-05T03:11:54",
+    "lateness_min": 11.67,
+    "window_end": "2026-01-05T04:00:00",
+    "watermark": "2026-01-04T23:30:45"
+   },
+   {
+    "class": "late_included",
+    "event_id": "2026-01-row-00292007",
+    "event_time": "2026-01-05T03:14:26",
+    "max_event_time_seen": "2026-01-05T03:29:44",
+    "lateness_min": 15.3,
+    "window_end": "2026-01-05T04:00:00",
+    "watermark": "2026-01-04T23:30:45"
+   },
+   {
+    "class": "late_included",
+    "event_id": "2026-01-row-00292037",
+    "event_time": "2026-01-05T03:14:27",
+    "max_event_time_seen": "2026-01-05T03:29:44",
+    "lateness_min": 15.28,
+    "window_end": "2026-01-05T04:00:00",
+    "watermark": "2026-01-04T23:30:45"
+   },
+   {
+    "class": "late_included",
+    "event_id": "2026-01-row-02765043",
+    "event_time": "2026-01-05T03:14:31",
+    "max_event_time_seen": "2026-01-05T03:29:44",
+    "lateness_min": 15.22,
+    "window_end": "2026-01-05T04:00:00",
+    "watermark": "2026-01-04T23:30:45"
+   },
+   {
+    "class": "late_included",
+    "event_id": "2026-01-row-00291913",
+    "event_time": "2026-01-05T03:14:35",
+    "max_event_time_seen": "2026-01-05T03:29:44",
+    "lateness_min": 15.15,
+    "window_end": "2026-01-05T04:00:00",
+    "watermark": "2026-01-04T23:30:45"
+   },
+   {
+    "class": "late_dropped",
+    "event_id": "2026-01-row-00290330",
+    "event_time": "2026-01-05T00:53:28",
+    "max_event_time_seen": "2026-01-05T07:08:30",
+    "lateness_min": 375.03,
+    "window_end": "2026-01-05T01:00:00",
+    "watermark": "2026-01-05T05:45:01"
+   },
+   {
+    "class": "late_dropped",
+    "event_id": "2026-01-row-00291067",
+    "event_time": "2026-01-05T01:56:25",
+    "max_event_time_seen": "2026-01-05T07:30:41",
+    "lateness_min": 334.27,
+    "window_end": "2026-01-05T02:00:00",
+    "watermark": "2026-01-05T05:45:01"
+   },
+   {
+    "class": "late_dropped",
+    "event_id": "2026-01-row-00291527",
+    "event_time": "2026-01-05T01:02:23",
+    "max_event_time_seen": "2026-01-05T08:34:05",
+    "lateness_min": 451.7,
+    "window_end": "2026-01-05T02:00:00",
+    "watermark": "2026-01-05T05:45:01"
+   },
+   {
+    "class": "late_dropped",
+    "event_id": "2026-01-row-00296510",
+    "event_time": "2026-01-05T07:28:04",
+    "max_event_time_seen": "2026-01-05T08:49:34",
+    "lateness_min": 81.5,
+    "window_end": "2026-01-05T08:00:00",
+    "watermark": "2026-01-05T08:10:32"
+   },
+   {
+    "class": "late_dropped",
+    "event_id": "2026-01-row-02764537",
+    "event_time": "2026-01-05T01:20:05",
+    "max_event_time_seen": "2026-01-05T09:07:08",
+    "lateness_min": 467.05,
+    "window_end": "2026-01-05T02:00:00",
+    "watermark": "2026-01-05T08:10:32"
+   }
+  ]
+ },
+ "max_lag": 12580,
+ "replayed_batches_skipped": 0,
+ "restored_from_snapshot": false,
+ "windows_reported": {
+  "diversity": 26,
+  "hll": 26
+ },
+ "spark_rows_dropped_by_watermark": {
+  "diversity": 1196,
+  "hll": 148
+ }
+}

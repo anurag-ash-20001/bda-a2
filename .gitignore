@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+*.parquet
+results/runs/*/stage*.ready
+results/runs/*/final_consumer.ready
+results/suite.log
+.pytest_cache/
+
+# Claude Code (AI assistant) local files
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.claude-*

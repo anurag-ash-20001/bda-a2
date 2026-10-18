@@ -1,0 +1,254 @@
+:: loading settings :: url = jar:file:/C:/Users/anura/.venvs/bda-a2/Lib/site-packages/pyspark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: C:\Users\anura\.ivy2\cache
+The jars for the packages stored in: C:\Users\anura\.ivy2\jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-c8d843a0-d3f8-4de2-b823-3a838f72ed14;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 in spark-list
+	found org.apache.kafka#kafka-clients;3.4.1 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.10.5 in central
+	found org.slf4j#slf4j-api;2.0.7 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.4 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.4 in spark-list
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+:: resolution report :: resolve 312ms :: artifacts dl 17ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.4 from spark-list in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.4 from central in [default]
+	org.apache.kafka#kafka-clients;3.4.1 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.5.3 from spark-list in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;2.0.7 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.10.5 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   11  |   0   |   0   |   0   ||   11  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-c8d843a0-d3f8-4de2-b823-3a838f72ed14
+	confs: [default]
+	0 artifacts copied, 11 already retrieved (0kB/11ms)
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/10/18 18:05:39 WARN SparkConf: Note that spark.local.dir will be overridden by the value set by the cluster manager (via SPARK_LOCAL_DIRS in mesos/standalone/kubernetes and LOCAL_DIRS in YARN).
+[stage1] running: bloom m=1917012 bits k=7 slots=4
+[Stage 0:>                                                          (0 + 1) / 1]                                                                                [stage1] batch 1: rows=100 spark+toPandas=1.02s bloom+produce=0.00s flush=0.00s lag_raw=2600
+[Stage 1:>                                                          (0 + 4) / 4]                                                                                [stage1] batch 2: rows=2900 spark+toPandas=0.71s bloom+produce=0.03s flush=0.00s lag_raw=0
+[stage1] batch 3: rows=1 spark+toPandas=0.05s bloom+produce=0.00s flush=0.02s lag_raw=325
+[stage1] batch 4: rows=551 spark+toPandas=0.08s bloom+produce=0.01s flush=0.00s lag_raw=450
+[stage1] batch 5: rows=840 spark+toPandas=0.10s bloom+produce=0.02s flush=0.01s lag_raw=491
+[stage1] batch 6: rows=809 spark+toPandas=0.07s bloom+produce=0.02s flush=0.03s lag_raw=430
+[stage1] batch 7: rows=831 spark+toPandas=0.06s bloom+produce=0.02s flush=0.01s lag_raw=374
+[stage1] batch 8: rows=643 spark+toPandas=0.08s bloom+produce=0.02s flush=0.01s lag_raw=458
+[stage1] batch 9: rows=802 spark+toPandas=0.06s bloom+produce=0.02s flush=0.01s lag_raw=390
+[stage1] batch 10: rows=652 spark+toPandas=0.06s bloom+produce=0.01s flush=0.01s lag_raw=333
+[stage1] batch 11: rows=622 spark+toPandas=0.06s bloom+produce=0.02s flush=0.01s lag_raw=372
+[stage1] batch 12: rows=652 spark+toPandas=0.04s bloom+produce=0.02s flush=0.01s lag_raw=349
+[stage1] batch 13: rows=643 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=316
+[stage1] batch 14: rows=563 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=332
+[stage1] batch 15: rows=592 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=383
+[stage1] batch 16: rows=624 spark+toPandas=0.06s bloom+produce=0.01s flush=0.01s lag_raw=370
+[stage1] batch 17: rows=634 spark+toPandas=0.07s bloom+produce=0.02s flush=0.00s lag_raw=308
+[stage1] batch 18: rows=562 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=353
+[stage1] batch 19: rows=664 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=318
+[stage1] batch 20: rows=554 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=298
+[stage1] batch 21: rows=542 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=284
+[stage1] batch 22: rows=496 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=325
+[stage1] batch 23: rows=578 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=307
+[stage1] batch 24: rows=534 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=270
+[stage1] batch 25: rows=502 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=282
+[stage1] batch 26: rows=516 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=350
+[stage1] batch 27: rows=636 spark+toPandas=0.06s bloom+produce=0.02s flush=0.01s lag_raw=416
+[stage1] batch 28: rows=698 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=320
+[stage1] batch 29: rows=594 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=325
+[stage1] batch 30: rows=579 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=305
+[stage1] batch 31: rows=541 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=277
+[stage1] batch 32: rows=515 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=304
+[stage1] batch 33: rows=547 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=274
+[stage1] batch 34: rows=535 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=365
+[stage1] batch 35: rows=595 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=280
+[stage1] batch 36: rows=559 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=341
+[stage1] batch 37: rows=590 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=303
+[stage1] batch 38: rows=532 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=284
+[stage1] batch 39: rows=519 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=278
+[stage1] batch 40: rows=525 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=296
+[stage1] batch 41: rows=578 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=304
+[stage1] batch 42: rows=521 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=305
+[stage1] batch 43: rows=588 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=316
+[stage1] batch 44: rows=736 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=450
+[stage1] batch 45: rows=703 spark+toPandas=0.04s bloom+produce=0.02s flush=0.00s lag_raw=475
+[stage1] batch 46: rows=701 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=264
+[stage1] batch 47: rows=489 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=254
+[stage1] batch 48: rows=479 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=311
+[stage1] batch 49: rows=623 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=345
+[stage1] batch 50: rows=614 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=330
+[stage1] batch 51: rows=672 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=347
+[stage1] batch 52: rows=592 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=277
+[stage1] batch 53: rows=577 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=352
+[stage1] batch 54: rows=600 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=323
+[stage1] batch 55: rows=565 spark+toPandas=0.04s bloom+produce=0.06s flush=0.00s lag_raw=340
+[stage1] batch 56: rows=573 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=325
+[stage1] batch 57: rows=556 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=299
+[stage1] batch 58: rows=504 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=244
+[stage1] batch 59: rows=449 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=274
+[stage1] batch 60: rows=491 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=310
+[stage1] batch 61: rows=573 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=304
+[stage1] batch 62: rows=491 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=296
+[stage1] batch 63: rows=593 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=333
+[stage1] batch 64: rows=573 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=356
+[stage1] batch 65: rows=594 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=300
+[stage1] batch 66: rows=526 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=261
+[stage1] batch 67: rows=493 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=302
+[stage1] batch 68: rows=515 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=286
+[stage1] batch 69: rows=562 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=278
+[stage1] batch 70: rows=493 spark+toPandas=0.07s bloom+produce=0.01s flush=0.00s lag_raw=274
+[stage1] batch 71: rows=548 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=317
+[stage1] batch 72: rows=574 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=351
+[stage1] batch 73: rows=581 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=307
+[stage1] batch 74: rows=548 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=264
+[stage1] batch 75: rows=520 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=277
+[stage1] batch 76: rows=486 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=274
+[stage1] batch 77: rows=578 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=358
+[stage1] batch 78: rows=587 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=333
+[stage1] batch 79: rows=547 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=277
+[stage1] batch 80: rows=467 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=257
+[stage1] batch 81: rows=565 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=327
+[stage1] batch 82: rows=561 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=341
+[stage1] batch 83: rows=561 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=260
+[stage1] batch 84: rows=470 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=245
+[stage1] batch 85: rows=489 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=275
+[stage1] batch 86: rows=473 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=284
+[stage1] batch 87: rows=487 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=265
+[stage1] batch 88: rows=473 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=281
+[stage1] batch 89: rows=532 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=279
+[stage1] batch 90: rows=470 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=281
+[stage1] batch 91: rows=492 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=280
+[stage1] batch 92: rows=469 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=249
+[stage1] batch 93: rows=484 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=277
+[stage1] batch 94: rows=480 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=304
+[stage1] batch 95: rows=501 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=235
+[stage1] batch 96: rows=438 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=251
+[stage1] batch 97: rows=471 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=240
+[stage1] batch 98: rows=412 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=299
+[stage1] batch 99: rows=508 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=289
+[stage1] batch 100: rows=484 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=281
+[stage1] batch 101: rows=477 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=253
+[stage1] batch 102: rows=463 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=306
+[stage1] batch 103: rows=551 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=341
+[stage1] batch 104: rows=600 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=283
+[stage1] batch 105: rows=597 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=417
+[stage1] batch 106: rows=967 spark+toPandas=0.03s bloom+produce=0.02s flush=0.00s lag_raw=279
+[stage1] batch 107: rows=597 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=315
+[stage1] batch 108: rows=792 spark+toPandas=0.04s bloom+produce=0.02s flush=0.00s lag_raw=287
+[stage1] batch 109: rows=581 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=289
+[stage1] batch 110: rows=535 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=290
+[stage1] batch 111: rows=671 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=358
+[stage1] batch 112: rows=567 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=264
+[stage1] batch 113: rows=533 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=302
+[stage1] batch 114: rows=541 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=285
+[stage1] batch 115: rows=526 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=291
+[stage1] batch 116: rows=497 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=255
+[stage1] batch 117: rows=531 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=344
+[stage1] batch 118: rows=545 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=243
+[stage1] batch 119: rows=476 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=284
+[stage1] batch 120: rows=519 spark+toPandas=0.02s bloom+produce=0.01s flush=0.00s lag_raw=242
+[stage1] batch 121: rows=522 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=322
+[stage1] batch 122: rows=516 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=253
+[stage1] batch 123: rows=497 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=269
+[stage1] batch 124: rows=483 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=268
+[stage1] batch 125: rows=513 spark+toPandas=0.02s bloom+produce=0.01s flush=0.00s lag_raw=238
+[stage1] batch 126: rows=448 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=296
+[stage1] batch 127: rows=543 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=304
+[stage1] batch 128: rows=491 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=252
+[stage1] batch 129: rows=472 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=246
+[stage1] batch 130: rows=464 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=296
+[stage1] batch 131: rows=549 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=287
+[stage1] batch 132: rows=499 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=261
+[stage1] batch 133: rows=471 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=245
+[stage1] batch 134: rows=468 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=314
+[stage1] batch 135: rows=563 spark+toPandas=0.02s bloom+produce=0.01s flush=0.00s lag_raw=266
+[stage1] batch 136: rows=480 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=273
+[stage1] batch 137: rows=491 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=276
+[stage1] batch 138: rows=505 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=346
+[stage1] batch 139: rows=559 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=298
+[stage1] batch 140: rows=562 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=287
+[stage1] batch 141: rows=491 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=302
+[stage1] batch 142: rows=542 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=265
+[stage1] batch 143: rows=445 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=255
+[stage1] batch 144: rows=519 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=301
+[stage1] batch 145: rows=496 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=280
+[stage1] batch 146: rows=516 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=274
+[stage1] batch 147: rows=467 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=262
+[stage1] batch 148: rows=502 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=320
+[stage1] batch 149: rows=533 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=288
+[stage1] batch 150: rows=513 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=243
+[stage1] batch 151: rows=465 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=296
+[stage1] batch 152: rows=600 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=303
+[stage1] batch 153: rows=538 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=349
+[stage1] batch 154: rows=596 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=286
+[stage1] batch 155: rows=500 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=257
+[stage1] batch 156: rows=484 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=255
+[stage1] batch 157: rows=463 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=279
+[stage1] batch 158: rows=506 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=267
+[stage1] batch 159: rows=473 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=261
+[stage1] batch 160: rows=475 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=264
+[stage1] batch 161: rows=471 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=326
+[stage1] batch 162: rows=513 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=254
+[stage1] batch 163: rows=443 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=243
+[stage1] batch 164: rows=443 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=253
+[stage1] batch 165: rows=445 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=289
+[stage1] batch 166: rows=486 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=261
+[stage1] batch 167: rows=494 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=269
+[stage1] batch 168: rows=515 spark+toPandas=0.06s bloom+produce=0.01s flush=0.00s lag_raw=311
+[stage1] batch 169: rows=558 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=402
+[stage1] batch 170: rows=654 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=281
+[stage1] batch 171: rows=490 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=765
+[stage1] batch 172: rows=967 spark+toPandas=0.03s bloom+produce=0.02s flush=0.00s lag_raw=274
+[stage1] batch 173: rows=500 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=462
+[stage1] batch 174: rows=686 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=253
+[stage1] batch 175: rows=493 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=299
+[stage1] batch 176: rows=560 spark+toPandas=0.05s bloom+produce=0.01s flush=0.00s lag_raw=286
+[stage1] batch 177: rows=500 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=253
+[stage1] batch 178: rows=470 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=230
+[stage1] batch 179: rows=452 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=357
+[stage1] batch 180: rows=578 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=254
+[stage1] batch 181: rows=459 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=231
+[stage1] batch 182: rows=453 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=269
+[stage1] batch 183: rows=488 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=329
+[stage1] batch 184: rows=551 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=264
+[stage1] batch 185: rows=464 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=250
+[stage1] batch 186: rows=506 spark+toPandas=0.03s bloom+produce=0.01s flush=0.00s lag_raw=286
+[stage1] batch 187: rows=523 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=310
+[stage1] batch 188: rows=591 spark+toPandas=0.04s bloom+produce=0.01s flush=0.00s lag_raw=330
+[stage1] batch 189: rows=569 spark+toPandas=0.45s bloom+produce=0.01s flush=0.00s lag_raw=105
+[stage1] batch 190: rows=116 spark+toPandas=0.19s bloom+produce=0.00s flush=0.00s lag_raw=7
+[Stage 190:==========================================>              (3 + 1) / 4]                                                                                [stage1] batch 191: rows=12 spark+toPandas=0.53s bloom+produce=0.00s flush=0.00s lag_raw=15
+[stage1] batch 192: rows=21 spark+toPandas=0.35s bloom+produce=0.00s flush=0.00s lag_raw=9
+[stage1] batch 193: rows=14 spark+toPandas=0.41s bloom+produce=0.00s flush=0.00s lag_raw=16
+[stage1] batch 194: rows=20 spark+toPandas=0.22s bloom+produce=0.00s flush=0.00s lag_raw=10
+[stage1] batch 195: rows=14 spark+toPandas=0.53s bloom+produce=0.00s flush=0.00s lag_raw=10
+[stage1] batch 196: rows=14 spark+toPandas=0.45s bloom+produce=0.00s flush=0.00s lag_raw=10
+[stage1] batch 197: rows=13 spark+toPandas=0.56s bloom+produce=0.00s flush=0.00s lag_raw=7
+[stage1] batch 198: rows=13 spark+toPandas=0.39s bloom+produce=0.00s flush=0.00s lag_raw=6
+[stage1] batch 199: rows=7 spark+toPandas=0.54s bloom+produce=0.00s flush=0.00s lag_raw=9
+[stage1] batch 200: rows=11 spark+toPandas=0.52s bloom+produce=0.00s flush=0.00s lag_raw=6
+[stage1] batch 201: rows=8 spark+toPandas=0.53s bloom+produce=0.00s flush=0.00s lag_raw=2
+[stage1] batch 202: rows=3 spark+toPandas=0.10s bloom+produce=0.00s flush=0.00s lag_raw=4
+[stage1] batch 203: rows=5 spark+toPandas=0.54s bloom+produce=0.00s flush=0.00s lag_raw=4
+[stage1] batch 204: rows=6 spark+toPandas=0.53s bloom+produce=0.00s flush=0.00s lag_raw=5
+[stage1] batch 205: rows=6 spark+toPandas=0.52s bloom+produce=0.00s flush=0.00s lag_raw=3
+[stage1] batch 206: rows=3 spark+toPandas=0.54s bloom+produce=0.00s flush=0.00s lag_raw=2
+[stage1] batch 207: rows=4 spark+toPandas=0.55s bloom+produce=0.00s flush=0.00s lag_raw=3
+[stage1] batch 208: rows=5 spark+toPandas=0.53s bloom+produce=0.00s flush=0.00s lag_raw=1
+[stage1] batch 209: rows=1 spark+toPandas=0.14s bloom+produce=0.00s flush=0.00s lag_raw=5
+[stage1] batch 210: rows=5 spark+toPandas=0.54s bloom+produce=0.00s flush=0.00s lag_raw=0
+[stage1] EOS forwarded. accepted=99738 rejected=2319

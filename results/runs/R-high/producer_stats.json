@@ -1,0 +1,25 @@
+{
+ "run_id": "R-high",
+ "requested_rate": 15000.0,
+ "source_events": 100000,
+ "messages_sent": 102057,
+ "duplicates_sent": 2057,
+ "delayed_events": 1988,
+ "elapsed_s": 26.406,
+ "actual_eps": 15046.9,
+ "actual_eps_incl_delay_tail": 3864.9,
+ "replay_s": 6.668,
+ "per_second_eps": [
+  0.1,
+  15013.4,
+  13778.0,
+  16275.9,
+  15073.6,
+  12871.8,
+  17195.4
+ ],
+ "first_event_time": "2026-01-05T00:00:00",
+ "last_event_time": "2026-01-06T03:24:59",
+ "partition_key": "pickup_zone",
+ "partitions": 4
+}

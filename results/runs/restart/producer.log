@@ -1,0 +1,22 @@
+[producer] loaded 100000 events 2026-01-05T00:00:00 .. 2026-01-06T03:24:59
+[producer] sent 3000 warm-up records, waiting 12s
+[producer] sent=5020 source=5000/100000 actual_eps=1004 pending_delayed=85
+[producer] sent=10054 source=10001/100000 actual_eps=1005 pending_delayed=160
+[producer] sent=15128 source=15002/100000 actual_eps=1008 pending_delayed=198
+[producer] sent=20231 source=20002/100000 actual_eps=1011 pending_delayed=212
+[producer] sent=25327 source=25003/100000 actual_eps=1013 pending_delayed=211
+[producer] sent=30441 source=30004/100000 actual_eps=1015 pending_delayed=202
+[producer] sent=35554 source=35004/100000 actual_eps=1016 pending_delayed=202
+[producer] sent=40648 source=40005/100000 actual_eps=1016 pending_delayed=210
+[producer] sent=45749 source=45005/100000 actual_eps=1017 pending_delayed=213
+[producer] sent=50864 source=50006/100000 actual_eps=1017 pending_delayed=193
+[producer] sent=55931 source=55006/100000 actual_eps=1017 pending_delayed=211
+[producer] sent=61038 source=60007/100000 actual_eps=1017 pending_delayed=212
+[producer] sent=66148 source=65007/100000 actual_eps=1018 pending_delayed=201
+[producer] sent=71244 source=70006/100000 actual_eps=1018 pending_delayed=215
+[producer] sent=76361 source=75009/100000 actual_eps=1018 pending_delayed=210
+[producer] sent=81478 source=80010/100000 actual_eps=1018 pending_delayed=198
+[producer] sent=86583 source=85011/100000 actual_eps=1018 pending_delayed=199
+[producer] sent=91656 source=90012/100000 actual_eps=1018 pending_delayed=221
+[producer] sent=96759 source=95013/100000 actual_eps=1018 pending_delayed=220
+[producer] done: sent=102057 in 118.6s actual_eps=1018.5 (requested 1000.0) dups=2057 delayed=1988

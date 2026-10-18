@@ -1,0 +1,10 @@
+pyspark==3.5.3
+setuptools>=70        # provides distutils, which pyspark 3.5 imports, on Python 3.12
+pandas==2.2.3         # pyspark 3.5 toPandas()/Arrow is not compatible with pandas 3
+numpy==1.26.4
+pyarrow==17.0.0      # last line that supports numpy 1.x
+confluent-kafka>=2.4
+mmh3>=4.0
+pyyaml>=6.0
+matplotlib>=3.8
+pytest>=8

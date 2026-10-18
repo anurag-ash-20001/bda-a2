@@ -1,0 +1,30 @@
+[final] consuming taxi.metrics + taxi.lsh
+[final] 2026-01-05T04:00 ev=13539 s2_eps=799.2 lag=7701 p50/p95=5674/6707ms | HLL 397/397 (0.0%) | LSH cand=0 true=0 recall=None | diverse exact=0.0385 ev=0.0 ent=0.0
+[final] 2026-01-05T02:00 ev=13539 s2_eps=799.2 lag=7701 p50/p95=5674/6707ms | HLL 430/433 (0.693%) | LSH cand=0 true=0 recall=None | diverse exact=0.0686 ev=0.027 ent=0.125
+[final] 2026-01-05T03:00 ev=13539 s2_eps=799.2 lag=7701 p50/p95=5674/6707ms | HLL 317/314 (0.955%) | LSH cand=0 true=0 recall=None | diverse exact=0.0638 ev=0.0 ent=0.0
+[final] 2026-01-05T01:00 ev=13539 s2_eps=799.2 lag=7701 p50/p95=5674/6707ms | HLL 671/678 (1.032%) | LSH cand=1 true=0 recall=None | diverse exact=0.125 ev=0.0244 ent=0.1111
+[final] 2026-01-05T00:00 ev=13539 s2_eps=799.2 lag=7701 p50/p95=5674/6707ms | HLL 1121/1137 (1.407%) | LSH cand=5 true=1 recall=1.0 | diverse exact=0.2174 ev=0.0308 ent=0.1818
+[final] 2026-01-05T05:00 ev=13539 s2_eps=799.2 lag=7701 p50/p95=5674/6707ms | HLL 789/791 (0.253%) | LSH cand=0 true=0 recall=None | diverse exact=0.1582 ev=0.0179 ent=0.0625
+[final] 2026-01-05T07:00 ev=51219 s2_eps=2230.5 lag=12746 p50/p95=5813/7268ms | HLL 2434/2405 (1.206%) | LSH cand=187 true=125 recall=0.648 | diverse exact=0.3395 ev=0.0796 ent=0.25
+[final] 2026-01-05T06:00 ev=51219 s2_eps=2230.5 lag=12746 p50/p95=5813/7268ms | HLL 1624/1626 (0.123%) | LSH cand=46 true=13 recall=0.4615 | diverse exact=0.2611 ev=0.0222 ent=0.1667
+[final] 2026-01-05T08:00 ev=51219 s2_eps=2230.5 lag=12746 p50/p95=5813/7268ms | HLL 2518/2486 (1.287%) | LSH cand=266 true=156 recall=0.7051 | diverse exact=0.3555 ev=0.1524 ent=0.3636
+[final] 2026-01-05T09:00 ev=51219 s2_eps=2230.5 lag=12746 p50/p95=5813/7268ms | HLL 2298/2321 (0.991%) | LSH cand=273 true=165 recall=0.7455 | diverse exact=0.3168 ev=0.1212 ent=0.2609
+[final] 2026-01-05T10:00 ev=51219 s2_eps=2230.5 lag=12746 p50/p95=5813/7268ms | HLL 2145/2159 (0.648%) | LSH cand=176 true=95 recall=0.6421 | diverse exact=0.306 ev=0.1494 ent=0.25
+[final] 2026-01-05T11:00 ev=51219 s2_eps=2230.5 lag=12746 p50/p95=5813/7268ms | HLL 2208/2189 (0.868%) | LSH cand=190 true=106 recall=0.6226 | diverse exact=0.3089 ev=0.1556 ent=0.24
+[final] 2026-01-05T12:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2210/2251 (1.821%) | LSH cand=214 true=74 recall=0.6622 | diverse exact=0.3172 ev=0.1758 ent=0.2273
+[final] 2026-01-05T13:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2311/2320 (0.388%) | LSH cand=236 true=137 recall=0.7737 | diverse exact=0.3187 ev=0.2152 ent=0.2381
+[final] 2026-01-05T14:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2398/2396 (0.083%) | LSH cand=262 true=129 recall=0.7752 | diverse exact=0.3132 ev=0.1839 ent=0.2667
+[final] 2026-01-05T15:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2454/2480 (1.048%) | LSH cand=272 true=117 recall=0.7436 | diverse exact=0.3085 ev=0.2198 ent=0.2105
+[final] 2026-01-05T16:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2518/2486 (1.287%) | LSH cand=233 true=77 recall=0.8052 | diverse exact=0.3262 ev=0.2151 ent=0.3529
+[final] 2026-01-05T17:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2459/2451 (0.326%) | LSH cand=278 true=145 recall=0.7724 | diverse exact=0.3631 ev=0.284 ent=0.3846
+[final] 2026-01-05T18:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2385/2377 (0.337%) | LSH cand=277 true=171 recall=0.6725 | diverse exact=0.3434 ev=0.2821 ent=0.2632
+[final] 2026-01-05T20:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2075/2062 (0.63%) | LSH cand=152 true=80 recall=0.75 | diverse exact=0.3857 ev=0.1818 ent=0.4
+[final] 2026-01-05T19:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 2207/2202 (0.227%) | LSH cand=171 true=85 recall=0.7765 | diverse exact=0.3419 ev=0.2308 ent=0.3077
+[final] 2026-01-05T21:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 1983/1966 (0.865%) | LSH cand=153 true=52 recall=0.8269 | diverse exact=0.3704 ev=0.2097 ent=0.4
+[final] 2026-01-05T22:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 1830/1832 (0.109%) | LSH cand=68 true=22 recall=0.6364 | diverse exact=0.3852 ev=0.1127 ent=0.3333
+[final] 2026-01-05T23:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 1558/1556 (0.129%) | LSH cand=15 true=2 recall=1.0 | diverse exact=0.3061 ev=0.0429 ent=0.1
+[final] 2026-01-06T00:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 1123/1105 (1.629%) | LSH cand=5 true=0 recall=None | diverse exact=0.2676 ev=0.0444 ent=0.3333
+[final] 2026-01-06T01:00 ev=87959 s2_eps=3085.9 lag=10737 p50/p95=6010/7535ms | HLL 628/632 (0.633%) | LSH cand=0 true=0 recall=None | diverse exact=0.1651 ev=0.0256 ent=0.25
+[final] 2026-01-06T02:00 ev=99738 s2_eps=2049.1 lag=0 p50/p95=5878/7502ms | HLL 402/402 (0.0%) | LSH cand=0 true=0 recall=None | diverse exact=0.0918 ev=0.0455 ent=0.1429
+[final] 2026-01-06T03:00 ev=99738 s2_eps=2049.1 lag=0 p50/p95=5878/7502ms | HLL 143/141 (1.418%) | LSH cand=0 true=0 recall=None | diverse exact=0.0147 ev=0.0 ent=0.0
+[final] run P1 complete: 28 windows, events=99738 p50/p95=5878/7502ms HLL err=0.7283% LSH={'20x5': 0.7379, '10x10': 0.0312, '25x4': 0.9493}

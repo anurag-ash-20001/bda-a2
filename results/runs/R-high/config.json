@@ -1,0 +1,64 @@
+{
+ "partitions": 4,
+ "producer_rate": 15000,
+ "duplicate_rate": 0.02,
+ "delayed_event_rate": 0.02,
+ "max_delay_seconds": 20,
+ "window_minutes": 60,
+ "hll_precision": 12,
+ "dgim_max_window": 10000,
+ "bloom_expected_items": 200000,
+ "bloom_false_positive_target": 0.01,
+ "lsh_num_hashes": 100,
+ "lsh_bands": 20,
+ "lsh_rows_per_band": 5,
+ "jaccard_threshold": 0.5,
+ "run_id": "R-high",
+ "parallelism": 4,
+ "partition_key": "pickup_zone",
+ "metrics_partitions": 1,
+ "data_file": "C:\\Users\\anura\\OneDrive\\Documents\\bda-a2\\yellow_tripdata_2026-01.parquet",
+ "segment_start": "2026-01-05T00:00:00",
+ "max_events": 100000,
+ "warmup_events": 3000,
+ "warmup_seconds": 12,
+ "max_trip_minutes": 300,
+ "max_trip_miles": 100,
+ "max_fare": 1000,
+ "slow_trip_minutes": 30,
+ "report_interval_seconds": 5,
+ "reservoir_sizes": [
+  100,
+  1000,
+  10000
+ ],
+ "reservoir_report_k": 1000,
+ "dgim_queries": [
+  1000,
+  5000,
+  10000
+ ],
+ "dgim_report_k": 5000,
+ "diversity_min_destinations": 10,
+ "sampling_rate": 0.1,
+ "watermark_minutes": 30,
+ "random_seed": 42,
+ "lsh_min_trips": 20,
+ "lsh_extra_settings": [
+  [
+   10,
+   10
+  ],
+  [
+   25,
+   4
+  ]
+ ],
+ "bootstrap_servers": "127.0.0.1:9092",
+ "kafka_mode": "native",
+ "kafka_home": "C:\\Users\\anura\\tools\\kafka",
+ "hadoop_home": "C:\\Users\\anura\\tools\\hadoop",
+ "work_dir": "C:\\Users\\anura\\AppData\\Local\\bda-a2",
+ "spark_kafka_package": "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3",
+ "final_idle_timeout_seconds": 20
+}
