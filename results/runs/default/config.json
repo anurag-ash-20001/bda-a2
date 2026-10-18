@@ -17,7 +17,7 @@
  "parallelism": 4,
  "partition_key": "pickup_zone",
  "metrics_partitions": 1,
- "data_file": "C:\\Users\\anura\\OneDrive\\Documents\\bda-a2-extras\\yellow_tripdata_2026-01.parquet",
+ "data_file": "C:\\Users\\anura\\OneDrive\\Documents\\bda-a2-extras\\producer\\yellow_tripdata_2026-01.parquet",
  "segment_start": "2026-01-05T00:00:00",
  "max_events": 100000,
  "warmup_events": 3000,
