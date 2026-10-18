@@ -1,7 +1,7 @@
 """Display LSH candidate pairs and their exact Jaccard for one window (TA check 6).
 
-    python scripts/show_lsh_window.py                       # busiest window of the default run
-    python scripts/show_lsh_window.py --run default --window 2026-01-05T08:00:00
+    python stage3_lsh/show_lsh_window.py                       # busiest window of the default run
+    python stage3_lsh/show_lsh_window.py --run default --window 2026-01-05T08:00:00
 
 Reads taxi.lsh-derived records from results/runs/<run>/results.jsonl is not
 enough (pairs are only in the topic), so this consumes taxi.lsh directly if the
@@ -14,7 +14,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common.config import ROOT, TOPIC_LSH, load_config  # noqa: E402
+from producer.pipeline_common import ROOT, TOPIC_LSH, load_config  # noqa: E402
 
 
 def from_kafka(cfg):

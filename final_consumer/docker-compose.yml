@@ -1,5 +1,5 @@
 # Alternative to the native Windows broker: single-node KRaft Kafka in Docker.
-#   docker compose up -d     then run stages with  --set kafka_mode=external
+#   docker compose -f final_consumer/docker-compose.yml up -d     then run stages with  --set kafka_mode=external
 # With kafka_mode=external, topics are deleted and recreated between runs (works on Linux).
 services:
   kafka:

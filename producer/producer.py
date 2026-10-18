@@ -24,7 +24,7 @@ import pandas as pd
 from confluent_kafka import Producer
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common.config import TOPIC_RAW, load_config, run_dir  # noqa: E402
+from producer.pipeline_common import TOPIC_RAW, load_config, run_dir  # noqa: E402
 
 COLUMNS = {  # source column -> pipeline name (brief section 2.1)
     "tpep_pickup_datetime": "pickup_datetime",

@@ -20,7 +20,7 @@ import numpy as np
 from confluent_kafka import Consumer
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common.config import ROOT, TOPIC_LSH, TOPIC_METRICS, load_config, run_dir  # noqa: E402
+from producer.pipeline_common import ROOT, TOPIC_LSH, TOPIC_METRICS, load_config, run_dir  # noqa: E402
 
 PERIODIC_FIELDS = ["events_processed", "producer_eps", "stage1_eps", "stage2_eps", "consumer_lag",
                    "latency_p50_ms", "latency_p95_ms"]

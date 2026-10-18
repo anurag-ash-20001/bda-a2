@@ -1,16 +1,17 @@
 """Start / stop / reset a single-node KRaft Kafka broker natively on Windows/Linux.
 
-    python scripts/kafka_ctl.py start     # format storage on first use, start broker
-    python scripts/kafka_ctl.py stop
-    python scripts/kafka_ctl.py reset     # stop, wipe all data, start fresh
-    python scripts/kafka_ctl.py status
-    python scripts/kafka_ctl.py topics    # (re)create the four pipeline topics
+    python final_consumer/kafka_ctl.py start     # format storage on first use, start broker
+    python final_consumer/kafka_ctl.py stop
+    python final_consumer/kafka_ctl.py reset     # stop, wipe all data, start fresh
+    python final_consumer/kafka_ctl.py status
+    python final_consumer/kafka_ctl.py topics    # (re)create the four pipeline topics
 
 With kafka_mode: external (e.g. docker compose up -d) only `topics`/`status` are used.
 """
 import base64
 import os
 import shutil
+import stat
 import subprocess
 import sys
 import time
@@ -18,8 +19,7 @@ import uuid
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common.config import load_config  # noqa: E402
-from common.kafka_utils import recreate_topics, wait_for_broker  # noqa: E402
+from producer.pipeline_common import load_config, recreate_topics, wait_for_broker  # noqa: E402
 
 
 def paths(cfg):
@@ -89,7 +89,10 @@ def kill_tree(pid):
             pass
 
 
-def start(cfg):
+def start(cfg, retry=True):
+    """Start the broker. If it dies during start-up (on Windows a crash can leave locked or
+    half-renamed metadata segments behind), its data is wiped and it is started once more:
+    every run recreates its topics anyway, so the broker's data is disposable."""
     p = paths(cfg)
     if is_running(p):
         print("Kafka already running")
@@ -106,7 +109,17 @@ def start(cfg):
                             stdin=subprocess.DEVNULL, creationflags=flags,
                             start_new_session=(os.name != "nt"))
     p["pid"].write_text(str(proc.pid))
-    ok = wait_for_broker(cfg, timeout=90)
+    ok = False
+    deadline = time.time() + 90
+    while time.time() < deadline and proc.poll() is None:
+        if wait_for_broker(cfg, timeout=5):
+            ok = True
+            break
+    if not ok and retry:
+        print(f"Kafka did not come up (see {p['log']}) -> wiping broker data and retrying")
+        stop(cfg)
+        wipe(p["data"])
+        return start(cfg, retry=False)
     print("Kafka started" if ok else f"Kafka did not come up, see {p['log']}")
     return ok
 
@@ -120,11 +133,21 @@ def stop(cfg):
     print("Kafka stopped")
 
 
+def wipe(path):
+    """Delete a directory tree including read-only files. Kafka marks its metadata snapshots
+    (*.checkpoint) read-only; rmtree(ignore_errors=True) silently leaves them behind on Windows,
+    and a stale snapshot makes the next broker crash at start-up."""
+    def force(func, target, _):
+        os.chmod(target, stat.S_IWRITE)
+        func(target)
+    if path.exists():
+        shutil.rmtree(path, onexc=force)
+
+
 def reset(cfg):
     stop(cfg)
-    p = paths(cfg)
-    shutil.rmtree(p["data"], ignore_errors=True)
-    return start(cfg)
+    wipe(paths(cfg)["data"])
+    return start(cfg, retry=False)
 
 
 def fresh_topics(cfg):

@@ -26,13 +26,13 @@ from confluent_kafka import Producer
 from pyspark.sql import functions as F
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common.config import ROOT, TOPIC_CLEAN, TOPIC_LSH, checkpoint_dir, load_config, run_dir  # noqa: E402
-from common.sketches import MinHasher, jaccard, lsh_candidates, lsh_threshold  # noqa: E402
-from common.spark_utils import CLEAN_SCHEMA, get_spark, mark_ready, read_kafka  # noqa: E402
+from producer.pipeline_common import (ROOT, TOPIC_CLEAN, TOPIC_LSH, checkpoint_dir, load_config,
+                                      run_dir, CLEAN_SCHEMA, get_spark, mark_ready, read_kafka)  # noqa: E402
+from stage3_lsh.minhash_lsh import MinHasher, jaccard, lsh_candidates, lsh_threshold  # noqa: E402
 
 
 def zone_names():
-    path = ROOT / "taxi_zone_lookup.csv"
+    path = Path(__file__).resolve().parent / "taxi_zone_lookup.csv"
     if not path.exists():
         return {}
     with open(path, newline="") as f:

@@ -1,5 +1,5 @@
 # One-time setup on Windows without Docker/WSL/admin rights (what the reference machine used).
-#   powershell -ExecutionPolicy Bypass -File setup_windows.ps1
+#   powershell -ExecutionPolicy Bypass -File final_consumer\setup_windows.ps1
 # Installs: Python 3.12 venv + packages, Kafka 3.9.1, Hadoop winutils (+ the MSVC 2010 runtime DLL it needs).
 # Java 17 is required:  winget install EclipseAdoptium.Temurin.17.JDK
 $ErrorActionPreference = 'Stop'
@@ -17,7 +17,7 @@ if (-not (py -0 | Select-String '3.12')) {
 $venv = "$env:USERPROFILE\.venvs\bda-a2"
 if (-not (Test-Path "$venv\Scripts\python.exe")) { py -3.12 -m venv $venv }
 & "$venv\Scripts\python.exe" -m pip install --upgrade pip -q
-& "$venv\Scripts\python.exe" -m pip install -r "$PSScriptRoot\requirements.txt" -q
+& "$venv\Scripts\python.exe" -m pip install -r "$PSScriptRoot\..\requirements.txt" -q
 
 if (-not (Test-Path "$tools\kafka\libs")) {
     Write-Host 'Downloading Kafka 3.9.1...'
@@ -46,4 +46,4 @@ if (-not (Test-Path 'C:\Windows\System32\msvcr100.dll') -and -not (Test-Path "$h
 }
 & "$hb\winutils.exe" ls $env:TEMP | Out-Null
 if ($LASTEXITCODE -ne 0) { throw 'winutils.exe does not run' }
-Write-Host 'Setup complete. Next: run_all.bat'
+Write-Host 'Setup complete. Next: put yellow_tripdata_2026-01.parquet in producer\ and run run_all.bat'

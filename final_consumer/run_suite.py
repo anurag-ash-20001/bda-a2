@@ -1,7 +1,7 @@
 """Run every required experiment (brief sections 7 and 8) and build the summary table.
 
-    python scripts/run_suite.py                 # all experiments
-    python scripts/run_suite.py --only P1,P2    # a subset
+    python final_consumer/run_suite.py                 # all experiments
+    python final_consumer/run_suite.py --only P1,P2    # a subset
 
 Rates were calibrated on the reference machine (see README): with 4 partitions
 and 4 slots the pipeline sustains ~7-8k events/s, so 1000 = low,
@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from scripts.run_experiment import run  # noqa: E402
+from final_consumer.run_experiment import run  # noqa: E402
 
 MEDIUM = 6000
 EXPERIMENTS = [

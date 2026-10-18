@@ -38,10 +38,12 @@ from confluent_kafka import Producer
 from pyspark.sql import functions as F
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common.config import TOPIC_CLEAN, TOPIC_METRICS, checkpoint_dir, load_config, run_dir  # noqa: E402
-from common.kafka_utils import OffsetTracker  # noqa: E402
-from common.sketches import DGIM, BloomFilter, Reservoir  # noqa: E402
-from common.spark_utils import CLEAN_SCHEMA, get_spark, mark_ready, read_kafka  # noqa: E402
+from producer.pipeline_common import (TOPIC_CLEAN, TOPIC_METRICS, checkpoint_dir, load_config,
+                                      run_dir, OffsetTracker, CLEAN_SCHEMA, get_spark, mark_ready,
+                                      read_kafka)  # noqa: E402
+from stage1_clean_bloom.bloom import BloomFilter  # noqa: E402
+from stage2_stream_analytics.dgim import DGIM  # noqa: E402
+from stage2_stream_analytics.reservoir import Reservoir  # noqa: E402
 
 
 def pct_err(est, exact):
@@ -250,7 +252,7 @@ class Stage2:
             buckets[name] += int(((lateness_min >= lo) & (lateness_min < hi)).sum())
         ids = ev["event_id"].to_numpy()
         ids_all = ev["event_id"].to_numpy()
-        if dropped.any():  # evaluation: joined with producer_delayed.csv by scripts/analyze_results.py
+        if dropped.any():  # evaluation: joined with producer_delayed.csv by final_consumer/analyze_results.py
             with open(self.out / "late_dropped_ids.csv", "a") as f:
                 for i in np.flatnonzero(dropped):
                     f.write(f"{ids_all[i]},{pd.Timestamp(int(t[i]), unit='ms').isoformat()},"

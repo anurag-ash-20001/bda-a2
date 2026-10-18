@@ -7,15 +7,40 @@ event/entity sampling, HLL, DGIM) → `taxi.metrics` and **Stage 3** (MinHash-LS
 **final consumer** → `results/results.jsonl`. Every stage after the producer reads from Kafka and
 writes to Kafka; nothing reads the parquet file except the producer.
 
-| Folder | Process | Reads | Writes |
-|---|---|---|---|
-| `producer/` | `python -m producer.producer` | parquet file | `taxi.raw` |
-| `stage1_clean_bloom/` | `python -m stage1_clean_bloom.stage1` | `taxi.raw` | `taxi.clean` |
-| `stage2_stream_analytics/` | `python -m stage2_stream_analytics.stage2` | `taxi.clean` | `taxi.metrics` |
-| `stage3_lsh/` | `python -m stage3_lsh.stage3` | `taxi.clean` | `taxi.lsh` |
-| `final_consumer/` | `python -m final_consumer.final_consumer` | `taxi.metrics`, `taxi.lsh` | console + `results/results.jsonl` |
-| `common/` | shared config, Kafka helpers, sketches (Bloom, DGIM, reservoir, MinHash/LSH), Spark helpers | | |
-| `scripts/` | orchestration, Kafka control, analysis, report | | |
+## Repository structure (as required by section 10 of the brief)
+
+```
+README.md  architecture.png  config.yaml  requirements.txt  LLM_USAGE.md  run_all.sh  run_all.bat
+producer/
+  producer.py              Taxi Data Producer: parquet -> taxi.raw
+  pipeline_common.py       shared code: config loading, Kafka helpers (topics, lag), Spark/Kafka source helpers
+  yellow_tripdata_2026-01.parquet   (data file, not in git - see 1.2)
+stage1_clean_bloom/
+  stage1.py                taxi.raw -> taxi.clean (validate, enrich, Bloom membership test)
+  bloom.py                 Bloom filter (own implementation)
+stage2_stream_analytics/
+  stage2.py                taxi.clean -> taxi.metrics (reservoir, event/entity sampling, HLL++, DGIM, counters)
+  dgim.py                  DGIM (own implementation)
+  reservoir.py             reservoir sampling, Algorithm R
+stage3_lsh/
+  stage3.py                taxi.clean -> taxi.lsh (destination sets, MinHash-LSH, exact Jaccard baseline)
+  minhash_lsh.py           MinHash signatures, banding, Jaccard
+  show_lsh_window.py       prints candidate pairs + exact Jaccard of one window
+  taxi_zone_lookup.csv     zone names
+final_consumer/
+  final_consumer.py        taxi.metrics + taxi.lsh -> console + results/results.jsonl
+  run_experiment.py        orchestrator: fresh topics, start all stages + producer, lag monitor, summary row
+  run_suite.py             all experiments of sections 7-8
+  run_experiments.bat      wrapper for run_suite.py + analysis
+  kafka_ctl.py             start / stop / reset the local Kafka broker, recreate topics
+  analyze_results.py       results/analysis.md + results/plots/
+  setup_windows.ps1        one-time setup on Windows
+  docker-compose.yml       Kafka for Linux/macOS
+results/
+  results.jsonl            standardized output (all runs)
+  experiment_summary.csv   one row per run
+  analysis.md  plots/  runs/<run_id>/
+```
 
 ---
 
@@ -28,19 +53,18 @@ writes to Kafka; nothing reads the parquet file except the producer.
 
 ### 1.2 Data file
 The producer replays `yellow_tripdata_2026-01.parquet` (NYC TLC yellow taxi trips, January 2026). It is
-not in the repository (`.gitignore`). Download it from the
-[NYC TLC trip record page](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) and place it in
-the project root:
+not in the repository (size, `.gitignore`). Download it from the
+[NYC TLC trip record page](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) into `producer/`:
 
 ```powershell
-Invoke-WebRequest https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2026-01.parquet -OutFile yellow_tripdata_2026-01.parquet
-Test-Path .\yellow_tripdata_2026-01.parquet      # True
+Invoke-WebRequest https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2026-01.parquet -OutFile producer\yellow_tripdata_2026-01.parquet
+Test-Path .\producer\yellow_tripdata_2026-01.parquet      # True
 ```
-`taxi_zone_lookup.csv` (zone names for LSH output) is already included.
+The location is `data_file` in `config.yaml`.
 
 ### 1.3 Windows (native, no Docker/WSL/admin)
 ```powershell
-powershell -ExecutionPolicy Bypass -File setup_windows.ps1
+powershell -ExecutionPolicy Bypass -File final_consumer\setup_windows.ps1
 ```
 Installs, if missing: Java 17 (winget), Python 3.12, a venv at `%USERPROFILE%\.venvs\bda-a2` with
 `requirements.txt`, Kafka 3.9.1 in `%USERPROFILE%\tools\kafka`, Hadoop `winutils.exe` + `hadoop.dll`
@@ -56,7 +80,7 @@ $KB = "$env:USERPROFILE\tools\kafka\bin\windows"
 ### 1.4 Linux / macOS / WSL
 ```bash
 python3.12 -m venv .venv && .venv/bin/pip install -r requirements.txt   # Java 17 must be on PATH
-docker compose up -d                                                    # Kafka 3.9.1 KRaft on 127.0.0.1:9092
+docker compose -f final_consumer/docker-compose.yml up -d               # Kafka 3.9.1 KRaft on 127.0.0.1:9092
 PY=.venv/bin/python
 ```
 On these systems always add `--set kafka_mode=external --set work_dir=/tmp/bda-a2` (done automatically
@@ -64,8 +88,9 @@ by `run_all.sh`); topics are then deleted/recreated instead of restarting the br
 
 ### 1.5 Sanity check
 ```powershell
-java -version                      # 17.x
-& $PY -m pytest tests -q           # 5 passed (Bloom, DGIM, reservoir, MinHash/LSH unit tests)
+java -version                                  # 17.x
+& $PY final_consumer\kafka_ctl.py start        # Kafka started
+& $PY final_consumer\kafka_ctl.py status       # running
 ```
 
 ---
@@ -76,8 +101,8 @@ java -version                      # 17.x
 .\run_all.bat                      # Windows
 ./run_all.sh                       # Linux / macOS / WSL
 ```
-`run_all` = `kafka_ctl.py start` → `run_experiment.py --run-id default` → `analyze_results.py`. The
-orchestrator:
+`run_all` = `final_consumer/kafka_ctl.py start` → `final_consumer/run_experiment.py --run-id default` →
+`final_consumer/analyze_results.py`. The orchestrator:
 1. resets the broker and creates fresh topics (`taxi.raw`/`taxi.clean`: 4 partitions,
    `taxi.metrics`/`taxi.lsh`: 1),
 2. starts Stage 1, 2, 3 and the final consumer (staggered), waits until each is ready,
@@ -103,8 +128,8 @@ Any argument after `run_all.bat` is passed to `run_experiment.py`, so `--run-id`
 Get-Content results\runs\default\results.jsonl -TotalCount 1     # one standardized window record
 Get-Content results\runs\default\final_summary.json              # run summary
 Import-Csv results\experiment_summary.csv | Format-Table run_id,produced_eps,stage2_eps,latency_p50_ms,latency_p95_ms,max_lag_raw,hll_mean_error_pct,lsh_recall_default
-& $PY scripts\show_lsh_window.py --run default                   # LSH candidates + exact Jaccard (busiest window)
-& $PY scripts\show_lsh_window.py --run default --window 2026-01-05T08:00:00 --top 50
+& $PY stage3_lsh\show_lsh_window.py --run default                # LSH candidates + exact Jaccard (busiest window)
+& $PY stage3_lsh\show_lsh_window.py --run default --window 2026-01-05T08:00:00 --top 50
 ```
 
 | Output | Content |
@@ -150,7 +175,7 @@ All parameters live in [`config.yaml`](config.yaml) (the brief's parameter names
 Either edit the file, or override per run without touching it:
 ```powershell
 .\run_all.bat --run-id <name> --set key=value --set key2=value2
-& $PY scripts\run_experiment.py --run-id <name> --set key=value [--restart-stage2 AFTER_S:DOWN_S] [--notes "text"]
+& $PY final_consumer\run_experiment.py --run-id <name> --set key=value [--restart-stage2 AFTER_S:DOWN_S] [--notes "text"]
 ```
 Each run writes `results/runs/<name>/` and adds/replaces its row in `results/experiment_summary.csv`.
 
@@ -173,6 +198,7 @@ Each run writes `results/runs/<name>/` and adds/replaces its row in `results/exp
 | `max_events`, `segment_start` | 100000, 2026-01-05T00:00:00 | replayed segment (identical in every run) |
 | `slow_trip_minutes`, `max_trip_minutes`, `max_trip_miles`, `max_fare` | 30, 300, 100, 1000 | Stage 1 enrichment/validation |
 | `report_interval_seconds` | 5 | periodic summary interval of Stage 2 |
+| `data_file` | `producer/yellow_tripdata_2026-01.parquet` | source file of the producer |
 | `kafka_mode` | `native` | `native` (bundled broker, Windows) or `external` (Docker/existing broker) |
 
 List values are given in YAML syntax: `--set "lsh_extra_settings=[[50,2],[25,4]]"`.
@@ -188,7 +214,7 @@ List values are given in YAML syntax: `--set "lsh_extra_settings=[[50,2],[25,4]]
 | 3 | Change partitions / consumers | `.\run_all.bat --run-id p1-demo --set partitions=1 --set parallelism=1` | `skew_raw`, throughput; `kafka-topics --describe` |
 | 4 | Bloom / HLL / DGIM exact vs approx | (any run) | `bloom`, `hll`, `dgim` fields; `final_summary.json` |
 | 5 | Change DGIM k / reservoir size | `.\run_all.bat --run-id k-test --set dgim_report_k=1000 --set reservoir_report_k=10000` | `dgim.k`, `sampling.k` in `results.jsonl` |
-| 6 | LSH candidates + exact Jaccard | `& $PY scripts\show_lsh_window.py --run default` | console |
+| 6 | LSH candidates + exact Jaccard | `& $PY stage3_lsh\show_lsh_window.py --run default` | console |
 | 7 | 6 consumers vs 4 partitions | compare P3 and P4 rows | `experiment_summary.csv`, `results/analysis.md` §7.2 |
 | 8 | Small change | e.g. `--set "lsh_extra_settings=[[50,2]]"` or `--set slow_trip_minutes=20` | new run folder |
 
@@ -196,8 +222,8 @@ Other useful variants:
 ```powershell
 .\run_all.bat --run-id key-test --set partition_key=none                     # K2-style, no message key
 .\run_all.bat --run-id bloom-test --set bloom_expected_items=2000            # forces Bloom false positives
-.\run_all.bat --run-id quick --set max_events=20000                          # short smoke run (~1 min)
-& $PY scripts\run_experiment.py --run-id restart-test --set producer_rate=1000 --restart-stage2 40:20   # kill Stage 2 40 s in, down 20 s
+.\run_all.bat --run-id quick --set max_events=20000                          # short smoke run (~1.5 min)
+& $PY final_consumer\run_experiment.py --run-id restart-test --set producer_rate=1000 --restart-stage2 40:20   # kill Stage 2 40 s in, down 20 s
 ```
 
 ---
@@ -205,10 +231,10 @@ Other useful variants:
 ## 6. Run all experiments (sections 7-8, ~40 min)
 
 ```powershell
-.\run_experiments.bat                     # default, P1-P4, K1, K2, R-low/medium/high, restart, bloom-small
-.\run_experiments.bat --only P1,P3,K2     # subset
-& $PY scripts\run_suite.py --only R-high  # same without the wrapper
-& $PY scripts\analyze_results.py          # rebuild results/analysis.md + results/plots/ from results/runs/*
+.\final_consumer\run_experiments.bat                     # default, P1-P4, K1, K2, R-low/medium/high, restart, bloom-small
+.\final_consumer\run_experiments.bat --only P1,P3,K2     # subset
+& $PY final_consumer\run_suite.py --only R-high          # same without the wrapper
+& $PY final_consumer\analyze_results.py                  # rebuild results/analysis.md + results/plots/ from results/runs/*
 ```
 
 | Run | Overrides |
@@ -226,8 +252,8 @@ Other useful variants:
 
 Each process in its own terminal (set `$PY` in each). Output goes to `results/runs/<run_id from config.yaml>/`.
 ```powershell
-& $PY scripts\kafka_ctl.py start                 # 1. broker
-& $PY scripts\kafka_ctl.py topics                # 2. fresh topics (native mode: wipes and restarts the broker)
+& $PY final_consumer\kafka_ctl.py start          # 1. broker
+& $PY final_consumer\kafka_ctl.py topics         # 2. fresh topics (native mode: wipes and restarts the broker)
 & $PY -m stage1_clean_bloom.stage1               # 3. terminal A
 & $PY -m stage2_stream_analytics.stage2          # 4. terminal B
 & $PY -m stage3_lsh.stage3                       # 5. terminal C
@@ -245,17 +271,15 @@ prints `restored state after batch N`; lag drains and `events_processed` ends at
 
 ---
 
-## 8. Kafka control and other scripts
+## 8. Kafka control
 
 ```powershell
-& $PY scripts\kafka_ctl.py start      # start broker (formats storage on first use)
-& $PY scripts\kafka_ctl.py status     # running / not reachable
-& $PY scripts\kafka_ctl.py topics     # fresh topics with the configured partition counts
-& $PY scripts\kafka_ctl.py stop       # stop broker
-& $PY scripts\kafka_ctl.py reset      # stop, wipe all broker data, start fresh
-& $PY scripts\make_architecture.py    # redraw architecture.png
-& $PY scripts\build_report.py         # rebuild Assignment2_Report.pdf (needs: pip install reportlab)
-docker compose up -d / docker compose down    # Linux/macOS broker
+& $PY final_consumer\kafka_ctl.py start      # start broker (formats storage on first use; wipes + retries if it crashes)
+& $PY final_consumer\kafka_ctl.py status     # running / not reachable
+& $PY final_consumer\kafka_ctl.py topics     # fresh topics with the configured partition counts
+& $PY final_consumer\kafka_ctl.py stop       # stop broker
+& $PY final_consumer\kafka_ctl.py reset      # stop, wipe all broker data, start fresh
+docker compose -f final_consumer/docker-compose.yml up -d     # Linux/macOS broker (down to stop)
 ```
 Kafka data, Spark checkpoints and Stage 2 state snapshots live in `work_dir`
 (`%LOCALAPPDATA%\bda-a2` on Windows), outside OneDrive.
@@ -263,9 +287,9 @@ Kafka data, Spark checkpoints and Stage 2 state snapshots live in `work_dir`
 ### Troubleshooting
 | Symptom | Fix |
 |---|---|
-| `Python environment not found` | run `setup_windows.ps1` |
-| `FileNotFoundError ... parquet` | download the data file (§1.2) |
-| `Kafka broker not reachable` / broker crashed | `& $PY scripts\kafka_ctl.py reset`; log: `%LOCALAPPDATA%\bda-a2\kafka.log` |
+| `Python environment not found` | run `final_consumer\setup_windows.ps1` |
+| `FileNotFoundError ... parquet` | download the data file into `producer\` (§1.2) |
+| `Kafka broker not reachable` / broker crashed | `& $PY final_consumer\kafka_ctl.py reset`; log: `%LOCALAPPDATA%\bda-a2\kafka.log` |
 | `stageN not ready ... relaunching` | expected occasionally (Spark local-mode start-up race); relaunched automatically |
 | `stageN died` | read `results\runs\<run>\stageN.log` |
 | first run slow | Spark downloads `spark-sql-kafka` once (needs internet) |
@@ -277,15 +301,16 @@ Kafka data, Spark checkpoints and Stage 2 state snapshots live in `work_dir`
 
 * **Kafka 3.9.1 (KRaft, single node)** running natively on Windows - Docker/WSL were not installed and
   need admin + reboot. Native topic deletion crashes the broker on Windows, so a clean run wipes and
-  restarts the broker (≈5 s) - the brief allows "another clean equivalent". `docker-compose.yml` is
-  provided for other machines.
+  restarts the broker (≈5 s) - the brief allows "another clean equivalent".
+  `final_consumer/docker-compose.yml` is provided for other machines.
 * **Spark Structured Streaming 3.5.3 (PySpark, `local[N]`)** for Stages 1-3: native Kafka source,
   event-time windows with watermarks, checkpointed offsets and state, built-in HyperLogLog++
   (`approx_count_distinct`). `local[N]` = N processing slots (the "consumers" of section 7).
 * **Driver-side sketches in `foreachBatch`** for the order-dependent single-stream structures (Bloom
   filter, reservoir, DGIM): one global instance gives one consistent answer for the whole stream and
   every parameter can be reported. DGIM, Bloom, reservoir and MinHash/banding are our own code
-  (`common/sketches.py`, unit-tested in `tests/`).
+  (`stage1_clean_bloom/bloom.py`, `stage2_stream_analytics/dgim.py`, `reservoir.py`,
+  `stage3_lsh/minhash_lsh.py`).
 * **confluent-kafka** for the producer, the final consumer and offset/lag observation.
 
 ## 10. Machine
@@ -319,8 +344,8 @@ producer share this machine.
 
 ## 12. Experiments and main observations
 
-Full tables, plots and the code walkthrough: **`Assignment2_Report.pdf`**, `results/analysis.md`,
-`results/experiment_summary.csv`. Same 100 000-trip segment in every run, fresh topics per run.
+Full tables and plots: `results/analysis.md`, `results/plots/`, `results/experiment_summary.csv`.
+Same 100 000-trip segment in every run, fresh topics per run.
 
 * **Default run** (4 partitions, 4 slots, key = pickup_zone, 1 000 ev/s): 1 018 ev/s produced,
   995 ev/s through Stage 2, p50/p95 latency 2.8 / 4.3 s, 28 windows. Bloom (m = 1.9 M bits, k = 7):

@@ -24,7 +24,7 @@ partition_key: pickup_zone    # pickup_zone | none  (none = no key -> librdkafka
 metrics_partitions: 1         # taxi.metrics and taxi.lsh carry compact summaries
 
 # ---------------- data ----------------
-data_file: yellow_tripdata_2026-01.parquet
+data_file: producer/yellow_tripdata_2026-01.parquet   # NYC TLC Jan 2026 yellow trips (not in git, see README)
 segment_start: "2026-01-05T00:00:00"   # first pickup time replayed (Monday)
 max_events: 100000            # number of source trips replayed (same segment in every run)
 warmup_events: 3000           # control records sent first so Spark compiles its queries before measuring

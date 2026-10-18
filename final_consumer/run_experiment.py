@@ -1,7 +1,7 @@
 """Run one end-to-end experiment.
 
-    python scripts/run_experiment.py --run-id P3 --set partitions=4 --set parallelism=4 --set producer_rate=4000
-    python scripts/run_experiment.py --run-id restart --restart-stage2 20:15   # kill Stage 2 20 s after start, 15 s down
+    python final_consumer/run_experiment.py --run-id P3 --set partitions=4 --set parallelism=4 --set producer_rate=4000
+    python final_consumer/run_experiment.py --run-id restart --restart-stage2 20:15   # kill Stage 2 20 s after start, 15 s down
 
 Steps: fresh topics (clean offsets) -> start Stage 1/2/3 + final consumer ->
 start producer -> sample consumer lag every second -> wait for the final
@@ -21,9 +21,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from common.config import TOPIC_CLEAN, TOPIC_RAW, load_config  # noqa: E402
-from common.kafka_utils import group_lag, partition_counts, wait_for_broker  # noqa: E402
-from scripts.kafka_ctl import fresh_topics, start as kafka_start  # noqa: E402
+from producer.pipeline_common import (TOPIC_CLEAN, TOPIC_RAW, load_config, group_lag,
+                                      partition_counts, wait_for_broker)  # noqa: E402
+from final_consumer.kafka_ctl import fresh_topics, start as kafka_start  # noqa: E402
 
 STAGES = {
     "stage1": "stage1_clean_bloom.stage1",
